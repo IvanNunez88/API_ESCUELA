@@ -12,7 +12,7 @@ public class BL_ALUMNO
     {
 
         IEnumerable<DtoConsulAlumnos> enuAlumnos = [];
-        string SQLScript = "SELECT Matricula,\r\n\t\tCONCAT_WS(' ',Nombre, APaterno, AMaterno) AS Alumno,\t\t\r\n\t\tIIF(IsActivo=1,'Activo', 'InActivo') AS Estatus,\r\n\t\tFORMAT(FecNaci,'dd/MM/yyyy') AS FecNaci\r\n FROM ALUMNO";
+        string SQLScript = "SELECT Matricula, Nombre, APaterno, AMaterno, CONCAT_WS(' ',Nombre, APaterno, AMaterno) AS Alumno, IIF(IsActivo=1,'Activo', 'InActivo') AS Estatus,\r\n\t\tFORMAT(FecNaci,'dd/MM/yyyy') AS FecNaci, CONVERT(VARCHAR(10), FecNaci) AS FecNaciF, IsActivo AS IdEstatus FROM ALUMNO";
 
         var ddParametros = new { };
 
@@ -25,7 +25,13 @@ public class BL_ALUMNO
                 Matricula = item.Field<int>("Matricula"),
                 Alumno = item.Field<string>("Alumno"),
                 Estatus = item.Field<string>("Estatus"),
-                FecNaci = item.Field<string>("FecNaci")
+                FecNaci = item.Field<string>("FecNaci"),
+                FecNaciF = item.Field<string>("FecNaciF"),
+                Nombre = item.Field<string>("Nombre"),
+                APaterno = item.Field<string>("APaterno"),
+                AMaterno = item.Field<string>("AMaterno"),
+                IdEstatus = item.Field<Boolean>("IdEstatus"),
+
             });
         }
 

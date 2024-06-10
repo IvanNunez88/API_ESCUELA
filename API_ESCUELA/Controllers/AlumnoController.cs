@@ -67,7 +67,6 @@ namespace API_ESCUELA.Controllers
             return Ok(rsp);
         }
 
-
         [HttpPut] // UPDATE - UPDATE
         [Route("Modificar")]
         public async Task<IActionResult> Modificar([FromBody] DtoModificarAlumno Alumno)
